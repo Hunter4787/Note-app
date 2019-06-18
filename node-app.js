@@ -34,7 +34,7 @@ else if ((entry[0] === 'remove') && (entry.length == 1))
        \n Missing required arguments: title`)
 }
 
-else if ((entry[0] === 'add') && (entry.length === 5) && (entry[1] === "--title") && (entry[3] === "--body"))
+else if ((entry[0] === 'add') && (entry.length === 5) && ((entry[1] === "--title") || (entry[1]==="-t")) && ((entry[3] === "--body") || (entry[3]==="-b")))
 {
   console.log(`Note created\n--\nTitle: ${entry[2]}\nBody: ${entry[4]}`)
   obj = JSON.parse(fs.readFileSync("fichier.json"))
@@ -42,7 +42,7 @@ else if ((entry[0] === 'add') && (entry.length === 5) && (entry[1] === "--title"
   fs.writeFileSync("fichier.json", JSON.stringify(obj))
 }
 
-else if ((entry.length === 3) && (entry[0] === 'read') && (entry[1] === "--title"))
+else if ((entry.length === 3) && (entry[0] === 'read') && ((entry[1] === "--title") || (entry[1]==="-t")))
 {
   obj = JSON.parse(fs.readFileSync("fichier.json"))
   let f=false
@@ -57,7 +57,7 @@ else if ((entry.length === 3) && (entry[0] === 'read') && (entry[1] === "--title
   if (!f) console.log('Not found')
 }
 
-else if ((entry.length === 3) && (entry[0] === 'remove') && (entry[1] === "--title"))
+else if ((entry.length === 3) && (entry[0] === 'remove') && ((entry[1] === "--title") || (entry[1]==="-t")))
 {
   obj = JSON.parse(fs.readFileSync("fichier.json"))
   let filtred = obj.filter((el,i)=>{if (el.title !== entry[2]) return el})
